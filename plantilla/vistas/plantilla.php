@@ -127,6 +127,9 @@ $url = PlantillaControlador::url();
 <script src="<?php echo $url; ?>vistas/assets/libs/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
 <script src="<?php echo $url; ?>vistas/assets/libs/datatables.net-select/js/dataTables.select.min.js"></script>
 
+<!-- Validation Demo js-->
+<script src="assets/js/pages/form-validation.js"></script>
+
 <!-- Datatables js -->
 <script src="<?php echo $url;?>vistas/assets/js/pages/datatables.js"></script>
 

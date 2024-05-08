@@ -15,19 +15,19 @@ class ProductosControlador
     }
 
     //Método para guardar información
-    public function ctrAgregarProducto()
+    public function ctrEditarProducto()
     {
         if (isset($_POST["editar_nombre_producto"])) {
-
-
             $producto = ProductosControlador::ctrMostrarProductos("id_producto", $_POST["editar_id_producto"]);
-
-            if ($producto["imagen_producto"] == "") {
-
-                $imagen = "";
+    
+            if(is_array($producto) && array_key_exists("imagen_producto", $producto)) {
+                if ($producto["imagen_producto"] == "") {
+                    $imagen = "";
+                } else {
+                    $imagen = $producto["imagen_producto"];
+                }
             } else {
-
-                $imagen = $producto["imagen_producto"];
+                $imagen = "";
             }
 
             //Comprobar que enviamos imagen
@@ -129,7 +129,7 @@ class ProductosControlador
     }
 
     //Método para editar información
-    public function ctrEditarProducto()
+    public function ctrAgregarProducto()
     {
         if (isset($_POST["nombre_producto"])) {
             $imagen = "";

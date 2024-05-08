@@ -70,7 +70,7 @@ $categorias = CategoriasControlador::ctrMostrarCategorias(null, null);
 <div class="modal fade" id="agregarProductoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="agregarProducto" method="post" enctype="multipart/form-data">
+        <form id="agregarProducto" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="modal-header">
                     <h5 class="modal-title">Agregar Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -79,21 +79,21 @@ $categorias = CategoriasControlador::ctrMostrarCategorias(null, null);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="field-1" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre_producto" id="field-1" placeholder="">
+                                <label for="validationTooltip01" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre_producto" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="field-2" class="form-label">precio</label>
-                                <input type="number" class="form-control" name="precio_producto" id="field-2" placeholder="">
+                                <label for="validationTooltip01" class="form-label">precio</label>
+                                <input type="number" class="form-control" name="precio_producto" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <label>Categoría</label>
-                            <select class="form-control" name="categoria_producto">
+                            <label for="validationTooltip01">Categoría</label>
+                            <select class="form-control" name="categoria_producto" id="validationTooltip01" required>
                             <option value="">Seleccione un elemento de la lista</option>
                             <?php foreach ($categorias as $key => $value) { ?>
                                 <option value="<?php echo $value["id_categoria"]; ?>">
@@ -131,7 +131,7 @@ $categorias = CategoriasControlador::ctrMostrarCategorias(null, null);
 <<div class="modal fade" id="editarProductoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <form id="editarProducto" method="post" enctype="multipart/form-data">
+        <form id="editarProducto" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
                 <div class="modal-header bg-warning">
                     <h5 class="modal-title">Editar Producto</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -141,13 +141,13 @@ $categorias = CategoriasControlador::ctrMostrarCategorias(null, null);
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="field-1" class="form-label">Nombre Producto</label>
-                                <input type="text" class="form-control nombre_producto" name="editar_nombre_producto" id="field-1" placeholder="">
+                                <input type="text" class="form-control nombre_producto" name="editar_nombre_producto" id="field-1" placeholder="Ingrese nombre del producto">
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
                                 <label for="field-2" class="form-label">precio</label>
-                                <input type="number" class="form-control precio_producto" name="editar_precio_producto" id="field-2" placeholder="">
+                                <input type="number" class="form-control precio_producto" name="editar_precio_producto" id="field-2" placeholder="Ingrese precio del producto">
                             </div>
                         </div>
                     </div>

@@ -62,7 +62,7 @@ $roles = RolesControlador::ctrMostrarRoles(null, null);
 <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="agregarUsuario" method="post">
+            <form id="agregarUsuario" method="post" class="needs-validation" novalidate>
                 <div class="modal-header">
                     <h5 class="modal-title">Agregar usuario</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -71,29 +71,29 @@ $roles = RolesControlador::ctrMostrarRoles(null, null);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="field-1" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre_usuario" id="field-1" placeholder="">
+                                <label for="validationTooltip01" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre_usuario" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="field-2" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email_usuario" id="field-2" placeholder="">
+                                <label for="validationTooltip01" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email_usuario" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="field-3" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="password_usuario" id="field-3" placeholder="">
+                                <label for="validationTooltip01" class="form-label">Password</label>
+                                <input type="password" class="form-control" name="password_usuario" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <?php if ($rutas[0] == "usuarios") { ?>
                             <label>Roles</label>
-                            <select class="form-control" name="id_rol_usuario">
+                            <select class="form-control" name="id_rol_usuario" id="validationTooltip01" required>
                                 <option value="">Seleccione un rol</option>
                                 <?php foreach ($roles as $key => $value) { ?>
                                     <option value="<?php echo $value["id_rol"]; ?>"><?php echo $value["nombre_rol"]; ?></option>
