@@ -157,11 +157,4 @@ INGRESO DE USUARIO
         }
     }
 
-    static public function obtenerNombreRol($id_rol)
-    {
-        $stmt = Conexion::conectar()->prepare("SELECT nombre_rol FROM roles WHERE id_rol = :id_rol");
-        $stmt->bindParam(":id_rol", $id_rol, PDO::PARAM_INT);
-        $stmt->execute();
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
 }

@@ -15,20 +15,24 @@ class ProductosControlador
     }
 
     //Método para guardar información
-    public function ctrEditarProducto()
+    public function ctrAgregarProducto()
     {
         if (isset($_POST["editar_nombre_producto"])) {
+
+
             $producto = ProductosControlador::ctrMostrarProductos("id_producto", $_POST["editar_id_producto"]);
-    
-            if(is_array($producto) && array_key_exists("imagen_producto", $producto)) {
+
+            if (is_array($producto) && array_key_exists("imagen_producto", $producto)) {
                 if ($producto["imagen_producto"] == "") {
                     $imagen = "";
                 } else {
                     $imagen = $producto["imagen_producto"];
                 }
             } else {
+                // Si no hay una imagen definida para el producto, asigna un valor predeterminado
                 $imagen = "";
             }
+
 
             //Comprobar que enviamos imagen
 
@@ -107,9 +111,13 @@ class ProductosControlador
             $tabla = "productos"; //nombre de la tabla
 
             $datos = array(
-                "nombre_producto" => $_POST["editar_nombre_producto"],
-                "categoria_producto" => $_POST["editar_categoria_producto"],
+                "nombre_producto" => $_POST["editar_nombre_producto"],               
                 "precio_producto" => $_POST["editar_precio_producto"],
+                "cantidad_producto" => $_POST["editar_cantidad_producto"],
+                "descripcion_producto" => $_POST["editar_descripcion_producto"],
+                "categoria_producto" => $_POST["editar_categoria_producto"],
+                "marca_producto" => $_POST["editar_marca_producto"],
+                "estado_producto" => $_POST["editar_estado_producto"],
                 "imagen_producto" => $imagen,
                 "id_producto" => $_POST["editar_id_producto"]
             );
@@ -129,7 +137,7 @@ class ProductosControlador
     }
 
     //Método para editar información
-    public function ctrAgregarProducto()
+    public function ctrEditarProducto()
     {
         if (isset($_POST["nombre_producto"])) {
             $imagen = "";
@@ -211,11 +219,15 @@ class ProductosControlador
             $tabla = "productos"; //nombre de la tabla
 
             $datos = array(
-                "nombre_producto" => $_POST["nombre_producto"],
-                "categoria_producto" => $_POST["categoria_producto"],
+                "nombre_producto" => $_POST["nombre_producto"],               
                 "precio_producto" => $_POST["precio_producto"],
-                "estado_producto" => 1,
+                "cantidad_producto" => $_POST["cantidad_producto"],
+                "descripcion_producto" => $_POST["descripcion_producto"],
+                "categoria_producto" => $_POST["categoria_producto"],
+                "marca_producto" => $_POST["marca_producto"],
+                "estado_producto" => $_POST["estado_producto"],
                 "imagen_producto" => $imagen
+
             );
 
             //podemos volver a la página de datos
@@ -240,17 +252,20 @@ ELIMINAR
     static public function ctrEliminarProducto()
     {
         $url = PlantillaControlador::url() . "productos";
+        
+
         if (isset($_GET["idProductoEliminar"])) {
+            echo "hla";
             $tabla = "productos";
             $dato = $_GET["idProductoEliminar"];
             $respuesta = ProductosModelo::mdlEliminarProducto($tabla, $dato);
-            if ($respuesta == "ok") {
+            //if ($respuesta == "ok") {
                 if ($respuesta == "ok") {
                     echo '<script>
-     fncSweetAlert("success", "El producto se eliminó correctamente", "' . $url . '");
-     </script>';
+    fncSweetAlert("success", "El producto se eliminó correctamente", "' . $url . '");
+    </script>';
                 }
-            }
+            //}
         }
     }
 }

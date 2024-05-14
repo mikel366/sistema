@@ -21,4 +21,31 @@ class Funciones
         return $url;
     }
 
+
+    static public function MostrarEstados($item, $valor)
+    {
+        $tabla = "estados";
+        $respuesta = MarcasModelo::mdlMostrarMarcas($tabla, $item, $valor);
+
+        return $respuesta;
+    }
+
+
+    static public function ObtenerNombreEstados($estado_producto)
+    {
+        try {
+            $stmt = Conexion::conectar()->prepare("SELECT nombre_estado FROM estados WHERE id_estado = :id_estado");
+            $stmt->bindParam(":id_estado", $estado_producto, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC)["nombre_categoria"];
+        } catch (Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+    
+
+
+
+    
 }
+

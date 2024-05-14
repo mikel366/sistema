@@ -7,11 +7,11 @@
 
                         <div class="text-center w-75 mx-auto auth-logo mb-4">
                             <a href="index.html" class="logo-dark">
-                                <span><img src="<?php echo $url; ?>/vistas/assets/images/logo-dark.png" alt="" height="22"></span>
+                                <span><img src="<?php echo $url; ?>vistas/assets/images/logo-dark.png" alt="" height="22"></span>
                             </a>
 
                             <a href="index.html" class="logo-light">
-                                <span><img src="<?php echo $url; ?>/vistas/assets/images/logo-light.png" alt="" height="22"></span>
+                                <span><img src="<?php echo $url; ?>vistas/assets/images/logo-light.png" alt="" height="22"></span>
                             </a>
                         </div>
 

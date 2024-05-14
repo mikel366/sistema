@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-04-2024 a las 09:30:29
+-- Tiempo de generación: 14-05-2024 a las 02:31:39
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -101,6 +101,7 @@ CREATE TABLE `productos` (
   `categoria_producto` int(11) NOT NULL,
   `imagen_producto` varchar(100) NOT NULL,
   `precio_producto` float NOT NULL,
+  `cantidad_producto` int(11) NOT NULL,
   `estado_producto` int(11) NOT NULL,
   `marca_producto` int(11) NOT NULL,
   `fecha_creacion_producto` datetime NOT NULL
@@ -110,13 +111,10 @@ CREATE TABLE `productos` (
 -- Volcado de datos para la tabla `productos`
 --
 
-INSERT INTO `productos` (`id_producto`, `nombre_producto`, `descripcion_producto`, `categoria_producto`, `imagen_producto`, `precio_producto`, `estado_producto`, `marca_producto`, `fecha_creacion_producto`) VALUES
-(6, 'Cortadora de Cabello', '', 2, ' ../assets/imagenes/productos/1700312124.jpg', 25000, 1, 4, '2023-11-18 09:55:24'),
-(7, 'Depiladora', '', 2, ' ../assets/imagenes/productos/1700313110.jpg', 62350, 1, 2, '2023-11-18 10:11:50'),
-(8, 'Cocina Aurora Multigas', '', 1, ' ../assets/imagenes/productos/1700313207.jpg', 350000, 1, 1, '2023-11-18 10:13:27'),
-(9, 'Amoladora', '', 6, ' ../assets/imagenes/productos/1700313297.jpg', 65000, 1, 3, '2023-11-18 10:14:57'),
-(10, 'Secarropas', 'Acá va la descripción del producto', 5, ' ../assets/imagenes/productos/1701728134.jpg', 150000, 1, 5, '2023-12-04 19:15:34'),
-(11, 'Fabrica de pastas', 'Desc', 5, ' ../assets/imagenes/productos/1701729408.jpg', 25000, 1, 1, '2023-12-04 19:36:48');
+INSERT INTO `productos` (`id_producto`, `nombre_producto`, `descripcion_producto`, `categoria_producto`, `imagen_producto`, `precio_producto`, `cantidad_producto`, `estado_producto`, `marca_producto`, `fecha_creacion_producto`) VALUES
+(40, 'aoi todou', 'el mejor bro de todos', 5, 'vistas/imagenes/productos/aoi-todou.png', 22500, 3, 2, 4, '0000-00-00 00:00:00'),
+(41, 'Galaxy 888', 'Un celular o una tablet? Creo que ambas, de una galaxia muy lejana. Con el mejor procesador del Multiverso.', 3, 'vistas/imagenes/productos/galaxy-888.png', 1458770000, 40, 2, 2, '0000-00-00 00:00:00'),
+(42, 'Amoladora', 'cualquier cosa por aprobar', 5, '', 12755, 12, 2, 4, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -159,7 +157,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `email_usuario`, `password_usuario`, `id_rol_usuario`, `estado_usuario`, `fecha_creacion_usuario`) VALUES
-(2, 'Pablo Pérez', 'pablo.eluniversoweb@gmail.com', '$2a$07$hdgfamkdhdshsjhduaostuRJbInCi2roRtiizyDZAO.2DpAreNOyW', 2, 1, '2024-04-16 21:44:29'),
+(2, 'Pablo Pérez', 'pablo.eluniversoweb@gmail.com', '$2a$07$hdgfamkdhdshsjhduaostuRJbInCi2roRtiizyDZAO.2DpAreNOyW', 2, 0, '2024-04-16 21:44:29'),
 (20, 'mikel', 'mikel@burns.com', '$2a$07$hdgfamkdhdshsjhduaostues3JeulsSfJKtHIqh6GlVn08sArK.f6', 1, 1, '2024-04-29 03:14:37');
 
 --
@@ -228,7 +226,7 @@ ALTER TABLE `marcas`
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -240,7 +238,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

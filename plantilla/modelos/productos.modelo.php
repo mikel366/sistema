@@ -36,15 +36,22 @@ class ProductosModelo
         try {
             $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(
                 nombre_producto, 
-                categoria_producto, 
-                precio_producto, 
-                estado_producto, 
-                imagen_producto) VALUES (:nombre_producto, :categoria_producto, :precio_producto, :estado_producto, :imagen_producto)");
+                precio_producto,
+                cantidad_producto,
+                descripcion_producto,
+                categoria_producto,
+                marca_producto,
+                estado_producto,
+                imagen_producto,
+                fecha_creacion_producto) VALUES (:nombre_producto, :precio_producto, :cantidad_producto, :descripcion_producto, :categoria_producto, :marca_producto, :estado_producto, :imagen_producto, NOW())");
 
             // UN ENLACE POR CADA DATO, TENER EN CUENTA EL TIPO DE DATO STR O INT
-            $stmt->bindParam(":nombre_producto", $datos["nombre_producto"], PDO::PARAM_STR);
-            $stmt->bindParam(":categoria_producto", $datos["categoria_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":nombre_producto", $datos["nombre_producto"], PDO::PARAM_STR);            
             $stmt->bindParam(":precio_producto", $datos["precio_producto"], PDO::PARAM_STR);
+            $stmt->bindParam(":cantidad_producto", $datos["cantidad_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":descripcion_producto", $datos["descripcion_producto"], PDO::PARAM_STR);
+            $stmt->bindParam(":categoria_producto", $datos["categoria_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":marca_producto", $datos["marca_producto"], PDO::PARAM_INT);
             $stmt->bindParam(":estado_producto", $datos["estado_producto"], PDO::PARAM_INT);
             $stmt->bindParam(":imagen_producto", $datos["imagen_producto"], PDO::PARAM_STR);
 
@@ -61,12 +68,25 @@ class ProductosModelo
     static public function mdlEditarProducto($tabla, $datos)
     {
         try {
-            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET nombre_producto = :nombre_producto, categoria_producto = :categoria_producto, precio_producto = :precio_producto, imagen_producto = :imagen_producto WHERE
-id_producto = :id_producto");
+            $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET 
+            nombre_producto = :nombre_producto, 
+            precio_producto = :precio_producto, 
+            cantidad_producto = :cantidad_producto, 
+            descripcion_producto = :descripcion_producto, 
+            categoria_producto = :categoria_producto, 
+            marca_producto = :marca_producto, 
+            estado_producto = :estado_producto, 
+            imagen_producto = :imagen_producto,
+            fecha_edicion_producto = NOW()
+             WHERE id_producto = :id_producto");
             //UN ENLACE DE PARAMETRO POR DATO, IGUAL A INSERTAR, IMPORTANTE SEGUIR EL ORDEN
-            $stmt->bindParam(":nombre_producto", $datos["nombre_producto"], PDO::PARAM_STR);
-            $stmt->bindParam(":categoria_producto", $datos["categoria_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":nombre_producto", $datos["nombre_producto"], PDO::PARAM_STR);            
             $stmt->bindParam(":precio_producto", $datos["precio_producto"], PDO::PARAM_STR);
+            $stmt->bindParam(":cantidad_producto", $datos["cantidad_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":descripcion_producto", $datos["descripcion_producto"], PDO::PARAM_STR);
+            $stmt->bindParam(":categoria_producto", $datos["categoria_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":marca_producto", $datos["marca_producto"], PDO::PARAM_INT);
+            $stmt->bindParam(":estado_producto", $datos["estado_producto"], PDO::PARAM_INT);
             $stmt->bindParam(":imagen_producto", $datos["imagen_producto"], PDO::PARAM_STR);
             $stmt->bindParam(":id_producto", $datos["id_producto"], PDO::PARAM_INT);
             if ($stmt->execute()) {
@@ -78,7 +98,7 @@ id_producto = :id_producto");
             return "Error: " . $e->getMessage();
         }
     }
-
+            
     /*=============================================
 ELIMINAR DATO
 
@@ -97,4 +117,5 @@ ELIMINAR DATO
             return "Error: " . $e->getMessage();
         }
     }
+
 }

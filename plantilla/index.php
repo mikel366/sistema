@@ -1,7 +1,7 @@
 <?php
 //Aplicación monolítica
 
-//Funnciones
+//Funciones
 require_once 'modelos/funciones.php';
 
 require_once 'controladores/plantilla.controlador.php';
@@ -17,6 +17,9 @@ require_once 'modelos/categorias.modelo.php';
 
 require_once 'controladores/productos.controlador.php';
 require_once 'modelos/productos.modelo.php';
+
+include_once 'controladores/marcas.controlador.php';
+include_once 'modelos/marcas.modelo.php';
 
 //Creamos una instancia de la clase plantilla
 $index = new PlantillaControlador();

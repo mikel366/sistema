@@ -91,7 +91,7 @@ $roles = RolesControlador::ctrMostrarRoles(null, null);
                         </div>
                     </div>
                     <div class="row">
-                        <?php if ($rutas[0] == "usuarios") { ?>
+            
                             <label>Roles</label>
                             <select class="form-control" name="id_rol_usuario" id="validationTooltip01" required>
                                 <option value="">Seleccione un rol</option>
@@ -99,7 +99,7 @@ $roles = RolesControlador::ctrMostrarRoles(null, null);
                                     <option value="<?php echo $value["id_rol"]; ?>"><?php echo $value["nombre_rol"]; ?></option>
                                 <?php } ?>
                             </select>
-                        <?php } ?>
+    
                     </div>
                 </div>
                 <?php

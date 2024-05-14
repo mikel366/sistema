@@ -2,12 +2,14 @@
 
 require_once '../controladores/productos.controlador.php';
 require_once '../modelos/productos.modelo.php';
+require_once '../controladores/categorias.controlador.php';
+require_once "../controladores/marcas.controlador.php";
+require_once "../modelos/funciones.php";
 
 class AjaxProductos
 {
-
     /*=============================================
-TRAER PRODUCTO
+    TRAER PRODUCTO
     =============================================*/
 
     public $id_producto;
@@ -15,7 +17,7 @@ TRAER PRODUCTO
     public function ajaxTraerProducto()
     {
 
-        $item = "id_producto";
+        $item  = "id_producto";
         $valor = $this->id_producto;
 
         $respuesta = ProductosControlador::ctrMostrarProductos($item, $valor);
@@ -24,9 +26,10 @@ TRAER PRODUCTO
     }
 }
 
-if (isset($_POST["id_producto"])) {
+if (isset($_POST["id_producto"]))
+{
 
-    $traerProducto = new AjaxProductos();
+    $traerProducto              = new AjaxProductos();
     $traerProducto->id_producto = $_POST["id_producto"];
     $traerProducto->ajaxTraerProducto();
 }

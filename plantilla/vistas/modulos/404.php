@@ -6,16 +6,16 @@
 
                         <div class="text-center w-75 mx-auto auth-logo mb-4">
                             <a href="<?php echo $url; ?>" class="logo-dark">
-                                <span><img src="<?php echo $url; ?>/vistas/assets/images/logo-dark.png" alt="" height="22"></span>
+                                <span><img src="<?php echo $url; ?>vistas/assets/images/logo-dark.png" alt="" height="22"></span>
                             </a>
 
                             <a href="<?php echo $url; ?>" class="logo-light">
-                                <span><img src="<?php echo $url; ?>/vistas/assets/images/logo-light.png" alt="" height="22"></span>
+                                <span><img src="<?php echo $url; ?>vistas/assets/images/logo-light.png" alt="" height="22"></span>
                             </a>
                         </div>
 
                         <div class="text-center w-50 mx-auto my-4">
-                            <img src="<?php echo $url; ?>/vistas/assets/images/404-error.svg" title="invite.svg">
+                            <img src="<?php echo $url; ?>vistas/assets/images/404-error.svg" title="invite.svg">
                         </div>
 
                         <h3 class="text-center mb-4 mt-3">Page Not Found</h3>

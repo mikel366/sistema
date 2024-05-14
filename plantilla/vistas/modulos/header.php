@@ -6,14 +6,14 @@
                             <div class="logo-box">
                                 <!-- Brand Logo Light -->
                                 <a href="index" class="logo-light">
-                                    <img src="<?php echo $url;?>/vistas/assets/images/logo-light.png" alt="logo" class="logo-lg" height="22">
-                                    <img src="<?php echo $url;?>/vistas/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
+                                    <img src="<?php echo $url;?>vistas/assets/images/logo-light.png" alt="logo" class="logo-lg" height="22">
+                                    <img src="<?php echo $url;?>vistas/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
                                 </a>
 
                                 <!-- Brand Logo Dark -->
                                 <a href="index" class="logo-dark">
-                                    <img src="<?php echo $url;?>/vistas/assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="22">
-                                    <img src="<?php echo $url;?>/vistas/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
+                                    <img src="<?php echo $url;?>vistas/assets/images/logo-dark.png" alt="dark logo" class="logo-lg" height="22">
+                                    <img src="<?php echo $url;?>vistas/assets/images/logo-sm.png" alt="small logo" class="logo-sm" height="22">
                                 </a>
                             </div>
 

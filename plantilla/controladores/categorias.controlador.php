@@ -12,4 +12,18 @@ class CategoriasControlador
 
         return $respuesta;
     }
+
+    static public function ctrObtenerNombreCategoria($categoria_producto)
+    {
+        try {
+            $stmt = Conexion::conectar()->prepare("SELECT nombre_categoria FROM categorias WHERE id_categoria = :id_categoria");
+            $stmt->bindParam(":id_categoria", $categoria_producto, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_ASSOC)["nombre_categoria"];
+        } catch (Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+    
+
 }

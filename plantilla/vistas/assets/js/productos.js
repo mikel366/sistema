@@ -22,8 +22,8 @@
             oPaginate: {
                 sFirst: "Primero",
                 sLast: "Último",
-                sNext: "Previo",
-                sPrevious: "Siguiente",
+                sNext: "Siguiente",
+                sPrevious: "Anterior",
             },
             oAria: {
                 sSortAscending:
@@ -82,13 +82,11 @@
         }
     });
     
-    /*=============================================
-    EDITAR PRODUCTO
-        =============================================*/
-    
-    $(".tablaProductos tbody, .productos").on("click", ".btnBotonEditarProducto", function () {
-        let id_producto = $(this).attr("id_producto");
+    $(".tablaProductos tbody, .productos").on("click", ".btnBoton", function () {
+        let id_producto = $(this).attr("idProducto");
         let categoria = $("#categoria");
+        let marca = $("#marca");
+        let estado = $("#estado");
         let tipo = $(this).attr("tipo");
         $(".previsualizarImg").html("");
         console.log(id_producto);
@@ -122,10 +120,28 @@
                 $("#editarProductoModal .precio_producto").val(
                     respuesta["precio_producto"]
                 );
+                $("#editarProductoModal .cantidad_producto").val(
+                    respuesta["cantidad_producto"]
+                );
+                $("#editarProductoModal .descripcion_producto").val(
+                    respuesta["descripcion_producto"]
+                );
                 let id_categoria = respuesta["categoria_producto"];
     
                 categoria
                     .find('option[value="' + id_categoria + '"]')
+                    .prop("selected", true);
+                
+                let id_marca = respuesta["marca_producto"];
+    
+                marca
+                    .find('option[value="' + id_marca + '"]')
+                    .prop("selected", true);
+                
+                let id_estado = respuesta["estado_producto"];
+    
+                estado
+                    .find('option[value="' + id_estado + '"]')
                     .prop("selected", true);
     
                 /*=============================================
@@ -162,9 +178,9 @@
     ELIMINAR PRODUCTO
     =============================================*/
     $(".tablaProductos tbody").on("click", ".btnEliminarProducto", function () {
-        
-        let idProductoEliminar = $(this).attr("id_producto");
     
+        let idProductoEliminar = $(this).attr("id_producto");
+        console.log(idProductoEliminar);
         Swal.fire({
             title: "¿Está seguro de borrar el producto?",
             text: "¡Si no lo está puede cancelar la acción!",
@@ -178,8 +194,66 @@
             if (result.value) {
                 window.location =
                     $("#url").val() +
-                    "index.php?pagina=productos&idProductoEliminar=" +
+                    "index.php?ruta=productos&idProductoEliminar=" +
                     idProductoEliminar;
             }
         });
     });
+    
+
+    //---------------------------VER DETALLES DEL PRODUCTO----------------------------------\\
+
+    $(".tablaProductos tbody").on("click", ".btnVerDetalleProducto", function () {
+        let idProducto = $(this).data("id-producto");
+    
+        let datos = new FormData();
+        datos.append("id_producto", idProducto);
+    
+        $.ajax({
+            url: $("#url").val() + "ajax/productos.ajax.php",
+            method: "POST",
+            data: datos,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (respuesta) {
+                console.log(respuesta);
+    
+                $("#detalleProductoModal .nombre_producto").html(respuesta["nombre_producto"]);
+                $("#detalleProductoModal .precio_producto").html(respuesta["precio_producto"]);
+                $("#detalleProductoModal .cantidad_producto").html(respuesta["cantidad_producto"]);
+                $("#detalleProductoModal .descripcion_producto").html(respuesta["descripcion_producto"]);
+                $("#detalleProductoModal .categoria_producto").html(respuesta["categoria_producto"]);
+                $("#detalleProductoModal .marca_producto").html(respuesta["marca_producto"]);
+                if(respuesta["estado_producto"] == 1)
+                    {
+                        $("#detalleProductoModal .estado_producto").html("Inactivo");
+                    }else{
+                        $("#detalleProductoModal .estado_producto").html("Activo");
+                    }
+                
+                $("#detalleProductoModal .fecha_creacion_producto").html(respuesta["fecha_creacion_producto"]);
+                $("#detalleProductoModal .fecha_edicion_producto").html(respuesta["fecha_edicion_producto"]);
+    
+    
+                /*=============================================
+                CARGAMOS LA FOTO
+                =============================================*/
+    
+                if (respuesta["imagen_producto"] == null || respuesta["imagen_producto"] == "") {
+                    $(".previsualizarImagen").attr("src", "vistas/imagenes/productos/default.png");
+                } else {
+                    $(".previsualizarImagen").attr("src", respuesta["imagen_producto"]);
+                }
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(xhr.status);
+                console.log(thrownError);
+            }
+        });
+    });
+    
+    
+    
+    
