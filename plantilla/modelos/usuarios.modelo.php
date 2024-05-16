@@ -55,4 +55,46 @@ class UsuariosModelo
         }
     }
 
+    static public function mdlEliminarUsuario($tabla, $dato)
+    {
+        try {
+            $stmt = Conexion::conectar()->prepare("DELETE FROM $tabla WHERE id_usuario = :id_usuario");
+            $stmt->bindParam(":id_usuario", $dato, PDO::PARAM_INT);
+            if ($stmt->execute()) {
+                return "ok";
+            } else {
+                return "error";
+            }
+        } catch (Exception $e) {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
+    static public function mdlEditarUsuario($tabla, $datos)
+{
+    try {
+        $stmt = Conexion::conectar()->prepare("UPDATE $tabla SET 
+        nombre_usuario = :nombre_usuario, 
+        email_usuario = :email_usuario, 
+        password_usuario = :password_usuario, 
+        id_rol_usuario = :id_rol_usuario,
+        estado_usuario = :estado_usuario
+        WHERE id_usuario = :id_usuario");
+        $stmt->bindParam(":nombre_usuario", $datos["nombre_usuario"], PDO::PARAM_STR);
+        $stmt->bindParam(":email_usuario", $datos["email_usuario"], PDO::PARAM_STR);
+        $stmt->bindParam(":password_usuario", $datos["password_usuario"], PDO::PARAM_STR); // Corregido el nombre del campo
+        $stmt->bindParam(":id_rol_usuario", $datos["id_rol_usuario"], PDO::PARAM_INT);
+        $stmt->bindParam(":estado_usuario", $datos["estado_usuario"], PDO::PARAM_INT);
+        $stmt->bindParam(":id_usuario", $datos["id_usuario"], PDO::PARAM_INT);
+        if ($stmt->execute()) {
+            return "ok";
+        } else {
+            return print_r(Conexion::conectar()->errorInfo());
+        }
+    } catch (Exception $e) {
+        return "Error: " . $e->getMessage();
+    }
+}
+
+
 }

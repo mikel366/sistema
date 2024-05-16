@@ -18,13 +18,14 @@ class UsuariosControlador
             $tabla = "usuarios";
 
             $password = crypt($_POST["password_usuario"], '$2a$07$hdgfamkdhdshsjhduaostyexdj$');
+            
 
             $datos = array(
                 "nombre_usuario" => $_POST["nombre_usuario"],
                 "email_usuario" => $_POST["email_usuario"],
                 "password_usuario" => $password,
                 "id_rol_usuario" => $_POST["id_rol_usuario"],
-                "estado_usuario" => 1
+                "estado_usuario" => $_POST["estado_usuario"]
             );
 
             //print_r($datos);
@@ -45,64 +46,6 @@ class UsuariosControlador
         }
     }
 
-    /*=============================================
-INGRESO DE USUARIO
-=============================================*/
-    // static public function ctrIngresoUsuario()
-    // {
-    //     //echo $_POST["ingresoEmail"];
-    //     if (isset($_POST["ingresoEmail"])) {
-
-    //         if (preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][azA-Z0-9_]+)*[.][a-zAZ]{2,4}$/', $_POST["ingresoEmail"])) {
-    //             $encriptar = crypt(
-    //                 $_POST["passwordUsuario"],
-    //                 '$2a$07$hdgfamkdhdshsjhduaostyexdj$'
-    //             );
-    //             $tabla     = "usuarios";
-    //             $item      = "email_usuario";
-    //             $valor     = $_POST["ingresoEmail"];
-    //             $respuesta = UsuariosModelo::mdlMostrarUsuarios(
-    //                 $tabla,
-    //                 $item,
-    //                 $valor
-    //             );
-    //             if (is_array($respuesta) && ($respuesta["email_usuario"] ==
-    //                 $_POST["ingresoEmail"] && $respuesta["password_usuario"] == $encriptar)) {
-    //                 if ($respuesta["estado_usuario"] == 1) {
-    //                     echo '<script>
-    //                     fncSweetAlert("loading", "Ingresando..", "")
-    //                     </script>';
-    //                     $_SESSION["session"]   = "ok";
-    //                     $_SESSION["idUsuario"] = $respuesta["id_usuario"];
-    //                     $_SESSION["nombre"]    = $respuesta["nombre_usuario"];
-    //                     $_SESSION["email"]     = $respuesta["email_usuario"];
-
-
-    //                     echo '<script>
-    //                     window.location = "inicio";
-    //                     </script>';
-    //                 } else {
-    //                 }
-    //             } else {
-    //                 echo '<br>
-    //     <div class="alert alert-danger">El usuario aún no
-    //     está activado</div>';
-    //             }
-    //         } else {
-    //             echo '<script>
-    // fncSweetAlert("error", "Error al intentar acceder,
-
-    // pruebe nuevamente", "' . PlantillaControlador::url() . '")
-    // </script>';
-    //         }
-    //         //}
-    //     }
-    // }
-
-
-    /*=============================================
-INGRESO DE USUARIO
-=============================================*/
 
     static public function ctrIngresoUsuario()
     {
@@ -114,6 +57,7 @@ INGRESO DE USUARIO
             {
 
                 $password = crypt($_POST["password_usuario"], '$2a$07$hdgfamkdhdshsjhduaostyexdj$');
+                
                 $tabla = "usuarios";
                 //Campo de la BD para login de usuario
                 $item = "email_usuario";
@@ -124,10 +68,10 @@ INGRESO DE USUARIO
                 if (is_array($respuesta) && ($respuesta["email_usuario"] == $valor && $respuesta["password_usuario"] == $password)) 
                 {
 
-                    // 1 - Activo
-                    // 0 - Inactivo
+                    // 2 - Activo
+                    // 1 - Inactivo
 
-                    if ($respuesta["estado_usuario"] == 1) 
+                    if ($respuesta["estado_usuario"] == 2) 
                     {
 
                         $_SESSION["session"] = "ok";
@@ -157,4 +101,69 @@ INGRESO DE USUARIO
         }
     }
 
+    static public function ctrEliminarUsuario()
+    {
+        $url = PlantillaControlador::url() . "usuarios";
+        
+
+        if (isset($_GET["idUsuarioEliminar"])) {
+            
+            $tabla = "usuarios";
+            $dato = $_GET["idUsuarioEliminar"];
+            $respuesta = UsuariosModelo::mdlEliminarUsuario($tabla, $dato);
+            //if ($respuesta == "ok") {
+                if ($respuesta == "ok") {
+                    echo '<script>
+    fncSweetAlert("success", "El usuario se eliminó correctamente", "' . $url . '");
+    </script>';
+                }
+            //}
+        }
+    }
+
+    static public function ctrEditarUsuario()
+{
+    if(isset($_POST["editar_nombre_usuario"]))
+    {
+
+        $usuario = UsuariosControlador::ctrMostrarUsuarios("id_usuario", $_POST["editar_id_usuario"]);
+        // Verificamos si se proporcionó una nueva contraseña
+        if (!empty($_POST["editar_password_usuario"])) {
+            $password = crypt($_POST["editar_password_usuario"], '$2a$07$hdgfamkdhdshsjhduaostyexdj$');
+        } else {
+            // Si no se proporciona una nueva contraseña, mantenemos la contraseña actual
+            $password = $usuario["password_usuario"];
+        }
+
+        $datos = array(
+            "nombre_usuario" => $_POST["editar_nombre_usuario"],
+            "email_usuario" => $_POST["editar_email_usuario"],
+            "password_usuario" => $password,
+            "id_rol_usuario" => $_POST["editar_id_rol_usuario"],
+            "estado_usuario" => $_POST["editar_estado_usuario"],
+            "id_usuario" => $_POST["editar_id_usuario"] // Agregamos el ID del usuario
+        );
+
+        $tabla = "usuarios";
+
+        $url = PlantillaControlador::url() . "usuarios";
+        
+        $respuesta = UsuariosModelo::mdlEditarUsuario($tabla, $datos);
+
+        if ($respuesta == "ok") {
+            echo '<script>
+                fncSweetAlert("success","El usuario se modificó correctamente", "' . $url . '"
+                );
+                </script>';
+        } else {
+            echo '<script>
+                fncSweetAlert("error","Error al modificar el usuario", "")
+                </script>';
+        }
+    }
 }
+
+
+
+}
+
