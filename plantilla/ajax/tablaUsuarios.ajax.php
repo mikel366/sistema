@@ -13,6 +13,7 @@ class TablaUsuarios
 
     public function mostrarTablaUsuarios()
     {
+        
         $usuarios = UsuariosControlador::ctrMostrarUsuarios(null, null);
 
 
@@ -37,7 +38,7 @@ class TablaUsuarios
             $rol = RolesControlador::ctrObtenerNombreRol($usuarios[$i]["id_rol_usuario"]);
 
             //Traemos las acciones
-            $acciones = "<button type='button' class='btn btn-warning btnBoton' tipo='editar' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-bs-toggle='modal' data-bs-target='#editarUsuarioModal'><i class='fas fa-edit'></i></button> <button type='button' id_usuario='" . $usuarios[$i]["id_usuario"] . "' class='btn btn-danger btnEliminarUsuario'><i class='fas fa-trash'></i></button>";
+            $acciones = "<button type='button' class='btn btn-warning btnBoton' tipo='editar' idUsuario='" . $usuarios[$i]["id_usuario"] . "' data-bs-toggle='modal' data-bs-target='#editarUsuarioModal'><i class='fas fa-edit'></i></button> <button type='button' id_usuario='" . $usuarios[$i]["id_usuario"] . "' class='btn btn-danger btnExportarUsuario'><i class='fas fa-trash'></i></button>";
 
 
             $datosJson .= '[
@@ -55,8 +56,10 @@ class TablaUsuarios
 
         echo $datosJson;
     }
+
 }
 
 
 $activarUsuarios = new TablaUsuarios(); 
 $activarUsuarios->mostrarTablaUsuarios();
+

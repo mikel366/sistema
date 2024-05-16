@@ -68,6 +68,7 @@ $url = PlantillaControlador::url();
                     $rutas[0] == "usuarios" ||
                     $rutas[0] == "categorias" ||
                     $rutas[0] == "home" ||
+                    $rutas[0] == "usuarios_eliminados" ||
                     $rutas[0] === "salir"
 
                 ) {

@@ -49,6 +49,28 @@
                                 <span class="menu-text"> Categorias </span>
                             </a>
                         </li>
+
+                        <li class="menu-item">
+                        <a href="#menuTables" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
+                            <span class="menu-icon"><i class="mdi mdi-recycle"></i></span>
+                            <span class="menu-text"> Papelera </span>
+                            <span class="menu-arrow"></span>
+                        </a>
+                        <div class="collapse" id="menuTables">
+                            <ul class="sub-menu">
+                                <li class="menu-item">
+                                    <a href="usuarios_eliminados" class="menu-link">
+                                        <span class="menu-text">Usuarios eliminados</span>
+                                    </a>
+                                </li>
+                                <li class="menu-item">
+                                    <a href="productos_eliminados" class="menu-link">
+                                        <span class="menu-text">Productos eliminados</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
                         
                         <li class="menu-item">
                             <a href="salir" class="menu-link waves-effect waves-light">

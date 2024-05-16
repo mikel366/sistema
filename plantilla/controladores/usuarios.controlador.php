@@ -5,11 +5,22 @@ class UsuariosControlador
     //Método para traer información
     static public function ctrMostrarUsuarios($item, $valor)
     {
+
         $tabla     = "usuarios";
         $respuesta = UsuariosModelo::mdlMostrarUsuarios($tabla, $item, $valor);
 
         return $respuesta;
     }
+
+    static public function ctrMostrarUsuariosEliminados($item, $valor)
+    {
+        
+        $tabla     = "usuarios_eliminados";
+        $respuesta = UsuariosModelo::mdlMostrarUsuarios($tabla, $item, $valor);
+
+        return $respuesta;
+    }
+    
 
     public function ctrAgregarUsuario()
     {
@@ -101,14 +112,52 @@ class UsuariosControlador
         }
     }
 
-    static public function ctrEliminarUsuario()
+    static public function ctrExportarUsuario()
     {
         $url = PlantillaControlador::url() . "usuarios";
         
 
-        if (isset($_GET["idUsuarioEliminar"])) {
+        if (isset($_GET["idUsuarioExportar"])) {
             
             $tabla = "usuarios";
+            $dato = $_GET["idUsuarioExportar"];
+            $respuesta = UsuariosModelo::mdlExportarUsuario($tabla, $dato);
+            //if ($respuesta == "ok") {
+                if ($respuesta == "ok") {
+                    echo '<script>
+    fncSweetAlert("success", "El usuario se eliminó correctamente", "' . $url . '");
+    </script>';
+                }
+            //}
+        }
+    }
+
+    static public function ctrRestrablecerUsuario()
+    {
+        $url = PlantillaControlador::url() . "usuarios_eliminados";
+
+        if(isset($_GET["idUsuarioRestabler"]))
+        {
+            $tabla = "usuarios_eliminados";
+            $dato = $_GET["idUsuarioRestabler"];
+            $respuesta = UsuariosModelo::mdlRestablecerUsuario($tabla, $dato);
+            if($respuesta == "ok")
+            {
+                echo '<script>
+                fncSweetAlert("success", "El usuario se restableció correctamente", "' . $url . '");
+                </script>';
+            }
+        }
+    }
+
+    static public function ctrEliminarUsuario()
+    {
+        $url = PlantillaControlador::url() . "usuarios_eliminados";
+        
+
+        if (isset($_GET["idUsuarioEliminar"])) {
+            
+            $tabla = "usuarios_eliminados";
             $dato = $_GET["idUsuarioEliminar"];
             $respuesta = UsuariosModelo::mdlEliminarUsuario($tabla, $dato);
             //if ($respuesta == "ok") {

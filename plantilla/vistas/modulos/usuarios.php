@@ -203,5 +203,5 @@ $estados = Funciones::MostrarEstados(null, null);
 
 <?php
 $eliminar = new UsuariosControlador();
-$eliminar->ctrEliminarUsuario();
+$eliminar->ctrExportarUsuario();
 ?>

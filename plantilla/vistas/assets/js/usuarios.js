@@ -1,57 +1,63 @@
 $(".tablaUsuarios").DataTable({
-     ajax: $("#url").val() + "ajax/tablaUsuarios.ajax.php", 
-     deferRender: true, 
-     retrieve: true, 
-     processing: true, 
-     language: { 
-        sProcessing: "Procesando...", 
-        sLengthMenu: "Mostrar _MENU_ usuarios", 
-        sZeroRecords: "No se encontraron resultados", 
-        sEmptyTable: "Ningún dato disponible en esta tabla", 
-        sInfo: "Mostrando usuarios del _START_ al _END_ de un total de _TOTAL_", 
-        sInfoEmpty: "Mostrando usuarios del 0 al 0 de un total de 0", 
-        sInfoFiltered: "(filtrado de un total de _MAX_ usuarios)", 
-        sInfoPostFix: "", 
-        sSearch: "Buscar:", 
-        sUrl: "", 
-        sInfoThousands: ",", 
-        sLoadingRecords: "Cargando...", 
-        oPaginate: { 
-            sFirst: "Primero", 
-            sLast: "Último", 
-            sNext: '<i class="fa-solid fa-angle-right"></i>', 
+    ajax: {
+        url: $("#url").val() + "ajax/tablaUsuarios.ajax.php",
+        dataSrc: "data"
+    },
+    deferRender: true,
+    retrieve: true,
+    processing: true,
+    language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar _MENU_ usuarios",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando usuarios del _START_ al _END_ de un total de _TOTAL_",
+        sInfoEmpty: "Mostrando usuarios del 0 al 0 de un total de 0",
+        sInfoFiltered: "(filtrado de un total de _MAX_ usuarios)",
+        sInfoPostFix: "",
+        sSearch: "Buscar:",
+        sUrl: "",
+        sInfoThousands: ",",
+        sLoadingRecords: "Cargando...",
+        oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: '<i class="fa-solid fa-angle-right"></i>',
             sPrevious: '<i class="fa-solid fa-angle-left"></i>',
-        }, 
-        oAria: { 
-            sSortAscending: ": Activar para ordenar la columna de manera ascendente", 
-            sSortDescending: ": Activar para ordenar la columna de manera descendente", 
-            }, 
-    }, 
+        },
+        oAria: {
+            sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+            sSortDescending: ": Activar para ordenar la columna de manera descendente",
+        },
+    },
 });
 
 
-$(".tablaUsuarios tbody").on("click", ".btnEliminarUsuario", function () {
+
+$(".tablaUsuarios tbody").on("click", ".btnExportarUsuario", function () {
     
-    let idUsuarioEliminar = $(this).attr("id_usuario");
-    console.log(idUsuarioEliminar);
+    let idUsuarioExportar = $(this).attr("id_usuario");
+    console.log(idUsuarioExportar);
     Swal.fire({
-        title: "¿Está seguro de borrar el producto?",
+        title: "¿Está seguro de borrar este usuario?",
         text: "¡Si no lo está puede cancelar la acción!",
         icon: "warning",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         cancelButtonText: "Cancelar",
-        confirmButtonText: "Si, borrar producto!",
+        confirmButtonText: "Si, borrar usuario!",
     }).then(function (result) {
         if (result.value) {
             window.location =
                 $("#url").val() +
-                "index.php?ruta=usuarios&idUsuarioEliminar=" +
-                idUsuarioEliminar;
+                "index.php?ruta=usuarios&idUsuarioExportar=" +
+                idUsuarioExportar;
         }
     });
 });
+
+
 
 $(".tablaUsuarios tbody, .usuarios").on("click", ".btnBoton", function () {
     let id_usuario = $(this).attr("idUsuario");
@@ -113,4 +119,83 @@ $(".tablaUsuarios tbody, .usuarios").on("click", ".btnBoton", function () {
     });
 
     //console.log("Hiciste click en el producto " + id_producto);
+});
+
+/*-----------------------------TABLA DE USUARIOS ELIMINADOS-----------------------------------*/
+$(".tablaUsuariosEliminados").DataTable({
+    ajax: {
+        url: $("#url").val() + "ajax/tablaUsuariosEliminados.ajax.php",
+        dataSrc: "data"
+    },
+    deferRender: true,
+    retrieve: true,
+    processing: true,
+    language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar _MENU_ usuarios",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando usuarios del _START_ al _END_ de un total de _TOTAL_",
+        sInfoEmpty: "Mostrando usuarios del 0 al 0 de un total de 0",
+        sInfoFiltered: "(filtrado de un total de _MAX_ usuarios)",
+        sInfoPostFix: "",
+        sSearch: "Buscar:",
+        sUrl: "",
+        sInfoThousands: ",",
+        sLoadingRecords: "Cargando...",
+        oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: '<i class="fa-solid fa-angle-right"></i>',
+            sPrevious: '<i class="fa-solid fa-angle-left"></i>',
+        },
+        oAria: {
+            sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+            sSortDescending: ": Activar para ordenar la columna de manera descendente",
+        },
+    },
+});
+
+$(".tablaUsuariosEliminados tbody").on("click", ".btnEliminarUsuario", function () {
+    let idUsuarioEliminar = $(this).data("id_usuario");
+    console.log(idUsuarioEliminar);
+    Swal.fire({
+        title: "¿Está seguro de borrar este usuario?",
+        text: "¡Si no lo está puede cancelar la acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, borrar usuario!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location =
+                $("#url").val() +
+                "index.php?ruta=usuarios_eliminados&idUsuarioEliminar=" +
+                idUsuarioEliminar;
+        }
+    });
+});
+
+$(".tablaUsuariosEliminados tbody").on("click", ".btnRestablecerUsuario", function () {
+    let idUsuarioRestabler = $(this).data("id_usuario");
+    console.log(idUsuarioRestabler);
+    Swal.fire({
+        title: "¿Está seguro de restablecer este usuario?",
+        text: "¡Si no lo está puede cancelar la acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, restablecer usuario!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location =
+                $("#url").val() +
+                "index.php?ruta=usuarios_eliminados&idUsuarioRestabler=" +
+                idUsuarioRestabler;
+        }
+    });
 });
