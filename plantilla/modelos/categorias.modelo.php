@@ -32,4 +32,26 @@ MOSTRAR DATOS
             }
         }
     }
+
+    static public function mdlAgregarCategoria($tabla, $dato)
+    {
+        try 
+        {
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(
+                nombre_categoria) VALUES (:nombre_categoria)");
+                $stmt->bindParam(":nombre_categoria", $dato["nombre_categoria"], PDO::PARAM_STR);
+                if ($stmt->execute()) 
+                {
+                    return "ok";
+                } 
+                else 
+                {
+                    return "error";
+                }
+        } 
+        catch (Exception $e) 
+        {
+            return "Error: " . $e->getMessage();
+        }
+    }
 }

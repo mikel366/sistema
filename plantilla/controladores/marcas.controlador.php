@@ -29,4 +29,23 @@ class MarcasControlador
             return "Error: " . $e->getMessage();
         }
     }
-}  
+
+    static public function ctrAgregarMarca()
+    {
+        if (isset($_POST["nombre_marca"])) 
+        {
+            $tabla = "marcas";
+            $nombre_marca = $_POST["nombre_marca"];
+            $datos = array("nombre_marca" => $nombre_marca);
+            $url = PlantillaControlador::url() . "productos";
+            $respuesta = MarcasModelo::mdlAgregarMarca($tabla, $datos);
+            
+            if ($respuesta == "ok") {
+                echo '<script>
+                     fncSweetAlert("success","La marca se agregó correctamente", "' . $url . '"
+                     );
+                     </script>';
+            }
+        }
+    }
+}

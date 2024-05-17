@@ -32,4 +32,26 @@ class MarcasModelo
             }
         }
     }
+
+    static public function mdlAgregarMarca($tabla, $dato)
+    {
+        try 
+        {
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(
+                nombre_marca) VALUES (:nombre_marca)");
+                $stmt->bindParam(":nombre_marca", $dato["nombre_marca"], PDO::PARAM_STR);
+                if ($stmt->execute()) 
+                {
+                    return "ok";
+                } 
+                else 
+                {
+                    return "error";
+                }
+        } 
+        catch (Exception $e) 
+        {
+            return "Error: " . $e->getMessage();
+        }
+    }
 }

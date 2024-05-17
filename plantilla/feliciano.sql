@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-05-2024 a las 21:18:22
+-- Tiempo de generación: 17-05-2024 a las 19:48:05
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,7 +43,8 @@ INSERT INTO `categorias` (`id_categoria`, `nombre_categoria`, `fecha_creacion`) 
 (3, 'Tablets', '2023-12-04 21:44:44'),
 (4, 'Celulares', '2023-12-04 21:44:44'),
 (5, 'Línea blanca', '2023-12-04 21:48:10'),
-(6, 'Herramientras', '2024-04-09 20:46:10');
+(6, 'Herramientras', '2024-04-09 20:46:10'),
+(7, 'Electrodomesticos', '2024-05-17 17:42:53');
 
 -- --------------------------------------------------------
 
@@ -86,7 +87,10 @@ INSERT INTO `marcas` (`id_marca`, `nombre_marca`, `fecha_creacion`) VALUES
 (2, 'Genius', '2023-11-17 21:43:15'),
 (3, 'Epson', '2023-12-04 21:48:51'),
 (4, 'HP', '2023-12-04 21:48:51'),
-(5, 'Philips', '2023-12-04 21:52:39');
+(5, 'Philips', '2023-12-04 21:52:39'),
+(6, 'Noga', '2024-05-17 17:29:17'),
+(10, 'Sony', '2024-05-17 17:31:48'),
+(11, 'Atma', '2024-05-17 17:44:11');
 
 -- --------------------------------------------------------
 
@@ -113,7 +117,8 @@ CREATE TABLE `productos` (
 --
 
 INSERT INTO `productos` (`id_producto`, `nombre_producto`, `descripcion_producto`, `categoria_producto`, `imagen_producto`, `precio_producto`, `cantidad_producto`, `estado_producto`, `marca_producto`, `fecha_creacion_producto`, `fecha_edicion_producto`) VALUES
-(46, 'Amoladora', 'Amoladora Angular 115mm 820W BLACK+DECKER G720N\r\n\r\nCaracterísticas:\r\nCódigo: G720N-AR\r\nEAN: 885911342407\r\nTipo: Angular\r\nPotencia: 820 W\r\nVoltaje: 220 V\r\nDiámetro del disco: 4 ½” (115 mm)\r\nDiámetro de Eje: M14\r\nPeso: 2.3 Kg\r\nArranque progresivo: No\r\nTipo de interruptor: Deslizante\r\nProtección contra sobrecarga: No\r\nIncluye colector de polvo: No\r\nRegulación de velocidad: No\r\nBotón de bloqueo de disco: Sí\r\nMotor con sello antipolvo: Sí\r\nPosiciones de Mango Lateral: 3\r\n\r\nOrigen: China\r\nAlimentación: Eléctrica\r\nFreno automático por atascamiento: No\r\nMarca: Black + Decker\r\n\r\nIncluye: (1) Amoladora Angular, (1) Empuñadura Lateral, (1) Guarda, (1) Llave y (1) Disco Abrasivo', 6, 'vistas/imagenes/productos/amoladora.png', 25550, 12, 1, 1, '2024-05-15 12:01:37', '2024-05-15 15:02:49');
+(46, 'Amoladora', 'Amoladora Angular 115mm 820W BLACK+DECKER G720N\r\n\r\nCaracterísticas:\r\nCódigo: G720N-AR\r\nEAN: 885911342407\r\nTipo: Angular\r\nPotencia: 820 W\r\nVoltaje: 220 V\r\nDiámetro del disco: 4 ½” (115 mm)\r\nDiámetro de Eje: M14\r\nPeso: 2.3 Kg\r\nArranque progresivo: No\r\nTipo de interruptor: Deslizante\r\nProtección contra sobrecarga: No\r\nIncluye colector de polvo: No\r\nRegulación de velocidad: No\r\nBotón de bloqueo de disco: Sí\r\nMotor con sello antipolvo: Sí\r\nPosiciones de Mango Lateral: 3\r\n\r\nOrigen: China\r\nAlimentación: Eléctrica\r\nFreno automático por atascamiento: No\r\nMarca: Black + Decker\r\n\r\nIncluye: (1) Amoladora Angular, (1) Empuñadura Lateral, (1) Guarda, (1) Llave y (1) Disco Abrasivo', 6, 'vistas/imagenes/productos/amoladora.png', 25550, 12, 1, 1, '2024-05-15 12:01:37', '2024-05-15 15:02:49'),
+(47, 'Microondas Digital Vintage Atma 20lts Display Blanco', 'escubre la elegancia atemporal con el microondas Atma Vintage, fusionando estilo y funcionalidad en tu cocina. Con una potencia de 700W y un volumen generoso de 20 litros, este electrodoméstico no solo destaca por su rendimiento, sino también por su diseño vintage que añade un toque único a tu espacio.\r\n\r\nLa función de descongelado automático simplifica la preparación de tus alimentos congelados, mientras que el panel digital ofrece un control preciso y moderno. Con un menú que incluye 8 programas predefinidos, desde recalentar hasta cocinar, este microondas se adapta a tus necesidades culinarias de manera conveniente.\r\n\r\nEl microondas Atma Vintage no solo es una herramienta práctica en la cocina, sino también una declaración de estilo que complementa cualquier decoración. Disfruta de la fusión perfecta entre lo clásico y lo moderno en cada comida con este encantador electrodoméstico.', 7, 'vistas/imagenes/productos/microondas-digital-vintage-atma-20lts-display-blanco.jpg', 25500, 15, 1, 3, '2024-05-17 14:45:54', '2024-05-17 17:46:21');
 
 -- --------------------------------------------------------
 
@@ -175,7 +180,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombre_usuario`, `email_usuario`, `password_usuario`, `id_rol_usuario`, `estado_usuario`, `fecha_creacion_usuario`) VALUES
-(20, 'mikel', 'mikel@burns.com', '$2a$07$hdgfamkdhdshsjhduaostues3JeulsSfJKtHIqh6GlVn08sArK.f6', 1, 2, '2024-05-16 18:45:38'),
+(20, 'mikel', 'mikel@burns.com', '$2a$07$hdgfamkdhdshsjhduaostues3JeulsSfJKtHIqh6GlVn08sArK.f6', 1, 2, '2024-05-17 02:14:59'),
 (77, 'mikel44', 'asds@gmail.com', '$2a$07$hdgfamkdhdshsjhduaostues3JeulsSfJKtHIqh6GlVn08sArK.f6', 1, 2, '2024-05-16 18:39:56');
 
 -- --------------------------------------------------------
@@ -242,7 +247,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
@@ -254,13 +259,13 @@ ALTER TABLE `estados`
 -- AUTO_INCREMENT de la tabla `marcas`
 --
 ALTER TABLE `marcas`
-  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_marca` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `productos`
 --
 ALTER TABLE `productos`
-  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_producto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`

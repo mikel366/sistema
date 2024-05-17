@@ -31,5 +31,27 @@ class RolesModelo
         }
     }
 
+    static public function mdlAgregarRol($tabla, $dato)
+    {
+        try 
+        {
+            $stmt = Conexion::conectar()->prepare("INSERT INTO $tabla(
+                nombre_rol) VALUES (:nombre_rol)");
+                $stmt->bindParam(":nombre_rol", $dato["nombre_rol"], PDO::PARAM_STR);
+                if ($stmt->execute()) 
+                {
+                    return "ok";
+                } 
+                else 
+                {
+                    return "error";
+                }
+        } 
+        catch (Exception $e) 
+        {
+            return "Error: " . $e->getMessage();
+        }
+    }
+
    
 }

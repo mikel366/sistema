@@ -24,6 +24,25 @@ class CategoriasControlador
             return "Error: " . $e->getMessage();
         }
     }
+
+    static public function ctrAgregarCategoria()
+    {
+        if (isset($_POST["nombre_categoria"])) 
+        {
+            $tabla = "categorias";
+            $nombre_categoria = $_POST["nombre_categoria"];
+            $datos = array("nombre_categoria" => $nombre_categoria);
+            $url = PlantillaControlador::url() . "productos";
+            $respuesta = CategoriasModelo::mdlAgregarCategoria($tabla, $datos);
+            
+            if ($respuesta == "ok") {
+                echo '<script>
+                     fncSweetAlert("success","La categoria se agregó correctamente", "' . $url . '"
+                     );
+                     </script>';
+            }
+        }
+    }
     
 
 }

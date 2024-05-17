@@ -26,4 +26,23 @@ class RolesControlador
         }
     }
 
+    static public function ctrAgregarRol()
+    {
+        if (isset($_POST["nombre_rol"])) 
+        {
+            $tabla = "roles";
+            $nombre_rol = $_POST["nombre_rol"];
+            $datos = array("nombre_rol" => $nombre_rol);
+            $url = PlantillaControlador::url() . "usuarios";
+            $respuesta = RolesModelo::mdlAgregarRol($tabla, $datos);
+            
+            if ($respuesta == "ok") {
+                echo '<script>
+                     fncSweetAlert("success","El rol se agregó correctamente", "' . $url . '"
+                     );
+                     </script>';
+            }
+        }
+    }
+
 }

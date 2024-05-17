@@ -15,7 +15,13 @@ $estados = Funciones::MostrarEstados(null, null);
                         <div class="col-lg-6 productos">
                                 <h4 class="page-title mb-0">PRODUCTOS</h4>
                                 <button type="button" class="btn btn-success mt-2 btnBoton" data-bs-toggle="modal" data-bs-target="#agregarProductoModal" tipo="nuevo">
-                                <i>Agregar</i>
+                                <i>Agregar Producto</i>
+                                </button>
+                                <button type="button" class="btn btn-success mt-2 btnBoton" data-bs-toggle="modal" data-bs-target="#agregarMarca">
+                                <i>Agregar marca</i>
+                                </button>
+                                <button type="button" class="btn btn-success mt-2 btnBoton" data-bs-toggle="modal" data-bs-target="#agregarCategoria">
+                                <i>Agregar Categoria</i>
                                 </button>
                         </div>
                         
@@ -282,6 +288,64 @@ $estados = Funciones::MostrarEstados(null, null);
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="agregarMarca" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title"> Agregar Marca</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="form-label">Nombre de la marca:</label>
+                            <input type="text" class="form-control" id="nombre_marca" name="nombre_marca" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
+                </div>
+                <?php
+                $agregarMarca = new MarcasControlador();
+                $agregarMarca->ctrAgregarMarca();
+                ?>  
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="agregarCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title"> Agregar Categoria</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="col-md-12">
+                        <div class="mb-3">
+                            <label for="form-label">Nombre de la categoria:</label>
+                            <input type="text" class="form-control" id="nombre_categoria" name="nombre_categoria" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-info">Guardar</button>
+                </div>
+                <?php
+                $agregarCategoria = new CategoriasControlador();
+                $agregarCategoria->ctrAgregarCategoria();
+                ?>  
+            </form>
         </div>
     </div>
 </div>

@@ -43,12 +43,7 @@
                             </a>
                         </li>
 
-                        <li class="menu-item">
-                            <a href="categorias" class="menu-link waves-effect waves-light">
-                                <span class="menu-icon"><i class="mdi mdi-format-list-checkbox"></i></span>
-                                <span class="menu-text"> Categorias </span>
-                            </a>
-                        </li>
+                        
 
                         <li class="menu-item">
                         <a href="#menuTables" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">
