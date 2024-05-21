@@ -177,10 +177,10 @@
     /*=============================================
     ELIMINAR PRODUCTO
     =============================================*/
-    $(".tablaProductos tbody").on("click", ".btnEliminarProducto", function () {
+    $(".tablaProductos tbody").on("click", ".btnExportarProducto", function () {
     
-        let idProductoEliminar = $(this).attr("id_producto");
-        console.log(idProductoEliminar);
+        let idProductoExportar = $(this).data("id_producto");
+        console.log(idProductoExportar);
         Swal.fire({
             title: "¿Está seguro de borrar el producto?",
             text: "¡Si no lo está puede cancelar la acción!",
@@ -194,8 +194,8 @@
             if (result.value) {
                 window.location =
                     $("#url").val() +
-                    "index.php?ruta=productos&idProductoEliminar=" +
-                    idProductoEliminar;
+                    "index.php?ruta=productos&idProductoExportar=" +
+                    idProductoExportar;
             }
         });
     });
@@ -224,8 +224,6 @@
                 $("#detalleProductoModal .precio_producto").html(respuesta["precio_producto"]);
                 $("#detalleProductoModal .cantidad_producto").html(respuesta["cantidad_producto"]);
                 $("#detalleProductoModal .descripcion_producto").html(respuesta["descripcion_producto"]);
-                $("#detalleProductoModal .categoria_producto").html(respuesta["categoria_producto"]);
-                $("#detalleProductoModal .marca_producto").html(respuesta["marca_producto"]);
                 if(respuesta["estado_producto"] == 1)
                     {
                         $("#detalleProductoModal .estado_producto").html("Inactivo");
@@ -253,7 +251,84 @@
             }
         });
     });
+
     
-    
-    
-    
+
+    /*-----------------------------TABLA DE PRODUCTOS ELIMINADOS-----------------------------------*/
+$(".tablaProductosEliminados").DataTable({
+    ajax: {
+        url: $("#url").val() + "ajax/tablaProductosEliminados.ajax.php",
+        dataSrc: "data"
+    },
+    deferRender: true,
+    retrieve: true,
+    processing: true,
+    language: {
+        sProcessing: "Procesando...",
+        sLengthMenu: "Mostrar _MENU_ usuarios",
+        sZeroRecords: "No se encontraron resultados",
+        sEmptyTable: "Ningún dato disponible en esta tabla",
+        sInfo: "Mostrando usuarios del _START_ al _END_ de un total de _TOTAL_",
+        sInfoEmpty: "Mostrando usuarios del 0 al 0 de un total de 0",
+        sInfoFiltered: "(filtrado de un total de _MAX_ usuarios)",
+        sInfoPostFix: "",
+        sSearch: "Buscar:",
+        sUrl: "",
+        sInfoThousands: ",",
+        sLoadingRecords: "Cargando...",
+        oPaginate: {
+            sFirst: "Primero",
+            sLast: "Último",
+            sNext: '<i class="fa-solid fa-angle-right"></i>',
+            sPrevious: '<i class="fa-solid fa-angle-left"></i>',
+        },
+        oAria: {
+            sSortAscending: ": Activar para ordenar la columna de manera ascendente",
+            sSortDescending: ": Activar para ordenar la columna de manera descendente",
+        },
+    },
+});
+
+$(".tablaProductosEliminados tbody").on("click", ".btnEliminarProducto", function () {
+    let idProductoEliminar = $(this).data("id_producto");
+    console.log(idProductoEliminar);
+    Swal.fire({
+        title: "¿Está seguro de borrar este producto?",
+        text: "¡Si no lo está puede cancelar la acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, borrar producto!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location =
+                $("#url").val() +
+                "index.php?ruta=productos_eliminados&idProductoEliminar=" +
+                idProductoEliminar;
+        }
+    });
+});
+
+$(".tablaProductosEliminados tbody").on("click", ".btnRestablecerProducto", function () {
+    let idProductoRestabler = $(this).data("id_producto");
+    console.log(idProductoRestabler);
+    Swal.fire({
+        title: "¿Está seguro de restablecer este producto?",
+        text: "¡Si no lo está puede cancelar la acción!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        cancelButtonText: "Cancelar",
+        confirmButtonText: "Si, restablecer producto!",
+    }).then(function (result) {
+        if (result.value) {
+            window.location =
+                $("#url").val() +
+                "index.php?ruta=productos_eliminados&idProductoRestabler=" +
+                idProductoRestabler;
+        }
+    });
+});

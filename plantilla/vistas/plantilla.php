@@ -66,7 +66,10 @@ $url = PlantillaControlador::url();
 
                     $rutas[0] == "productos" ||
                     $rutas[0] == "usuarios" ||
-                    
+                    $rutas[0] == "productos_eliminados" ||
+                    $rutas[0] == "categorias" ||
+                    $rutas[0] == "marcas" ||
+                    $rutas[0] == "roles" ||
                     $rutas[0] == "home" ||
                     $rutas[0] == "usuarios_eliminados" ||
                     $rutas[0] === "salir"
@@ -134,6 +137,9 @@ $url = PlantillaControlador::url();
 
     <script src="<?php echo $url ?>vistas/assets/js/productos.js"></script>
     <script src="<?php echo $url ?>vistas/assets/js/usuarios.js"></script>
+    <script src="<?php echo $url ?>vistas/assets/js/categorias.js"></script>
+    <script src="<?php echo $url ?>vistas/assets/js/marcas.js"></script>
+    <script src="<?php echo $url ?>vistas/assets/js/roles.js"></script>
 
 
 </body>

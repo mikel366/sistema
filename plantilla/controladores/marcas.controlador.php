@@ -37,7 +37,7 @@ class MarcasControlador
             $tabla = "marcas";
             $nombre_marca = $_POST["nombre_marca"];
             $datos = array("nombre_marca" => $nombre_marca);
-            $url = PlantillaControlador::url() . "productos";
+            $url = PlantillaControlador::url() . "marcas";
             $respuesta = MarcasModelo::mdlAgregarMarca($tabla, $datos);
             
             if ($respuesta == "ok") {
@@ -46,6 +46,55 @@ class MarcasControlador
                      );
                      </script>';
             }
+        }
+    }
+
+    static public function ctrEditarMarca()
+    {
+        if(isset($_POST["editar_nombre_marca"]))
+        {
+            $marcas = CategoriasControlador::ctrMostrarCategorias("id_marca", $_POST["editar_id_marca"]);
+
+            if($marcas)
+            {
+                $datos = array(
+                "nombre_marca" => $_POST["editar_nombre_marca"],
+                "id_marca" => $_POST["editar_id_marca"] // Agregamos el ID del usuario
+                );
+            }
+            
+    
+            $tabla = "marcas";
+    
+            $url = PlantillaControlador::url() . "marcas";
+            
+            $respuesta = MarcasModelo::mdlEditarMarca($tabla, $datos);
+
+            if($respuesta == "ok")
+            {
+                echo '<script>
+                     fncSweetAlert("success","La marca se edito correctamente", "' . $url . '"
+                     );
+                     </script>';
+            }
+        }
+    }
+
+    static public function ctrEliminarMarca()
+    {
+        $url = PlantillaControlador::url() . "marcas";
+        if (isset($_GET["idEliminarMarca"])) {
+            
+            $tabla = "marcas";
+            $dato = $_GET["idEliminarMarca"];
+            $respuesta = MarcasModelo::mdlEliminarMarca($tabla, $dato);
+            //if ($respuesta == "ok") {
+                if ($respuesta == "ok") {
+                    echo '<script>
+    fncSweetAlert("success", "La marca se eliminó correctamente", "' . $url . '");
+    </script>';
+                }
+            //}
         }
     }
 }

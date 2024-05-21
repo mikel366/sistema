@@ -15,7 +15,7 @@ class ProductosControlador
     }
 
     //Método para guardar información
-    public function ctrAgregarProducto()
+    public function ctrEditarProducto()
     {
         if (isset($_POST["editar_nombre_producto"])) {
 
@@ -137,7 +137,7 @@ class ProductosControlador
     }
 
     //Método para editar información
-    public function ctrEditarProducto()
+    public function ctrAgregarProducto()
     {
         if (isset($_POST["nombre_producto"])) {
             $imagen = "";
@@ -246,17 +246,25 @@ class ProductosControlador
         }
     }
 
+    static public function ctrMostrarProductosEliminados($item, $valor)
+    {
+        $tabla = "productos_eliminados";
+        $respuesta = ProductosModelo::mdlMostrarProductosEliminados($tabla, $item, $valor);
+
+        return $respuesta;
+    }
+
     /*=============================================
 ELIMINAR
 =============================================*/
     static public function ctrEliminarProducto()
     {
-        $url = PlantillaControlador::url() . "productos";
+        $url = PlantillaControlador::url() . "productos_eliminados";
         
 
         if (isset($_GET["idProductoEliminar"])) {
             echo "hla";
-            $tabla = "productos";
+            $tabla = "productos_eliminados";
             $dato = $_GET["idProductoEliminar"];
             $respuesta = ProductosModelo::mdlEliminarProducto($tabla, $dato);
             //if ($respuesta == "ok") {
@@ -268,4 +276,43 @@ ELIMINAR
             //}
         }
     }
+
+    static public function ctrExportarProducto()
+    {
+        $url = PlantillaControlador::url() . "productos";
+        
+
+        if (isset($_GET["idProductoExportar"])) {
+            
+            $tabla = "productos";
+            $dato = $_GET["idProductoExportar"];
+            $respuesta = ProductosModelo::mdlExportarProducto($tabla, $dato);
+            //if ($respuesta == "ok") {
+                if ($respuesta == "ok") {
+                    echo '<script>
+    fncSweetAlert("success", "El producto se eliminó correctamente", "' . $url . '");
+    </script>';
+                }
+            //}
+        }
+    }
+
+    static public function ctrRestrablecerProducto()
+    {
+        $url = PlantillaControlador::url() . "productos_eliminados";
+
+        if(isset($_GET["idProductoRestabler"]))
+        {
+            $tabla = "productos_eliminados";
+            $dato = $_GET["idProductoRestabler"];
+            $respuesta = ProductosModelo::mdlRestablecerProducto($tabla, $dato);
+            if($respuesta == "ok")
+            {
+                echo '<script>
+                fncSweetAlert("success", "El producto se restableció correctamente", "' . $url . '");
+                </script>';
+            }
+        }
+    }
+
 }

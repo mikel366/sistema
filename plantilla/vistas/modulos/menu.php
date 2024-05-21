@@ -35,6 +35,12 @@
                                 <span class="menu-text"> Usuarios </span>
                             </a>
                         </li>
+                        <li class="menu-item">
+                            <a href="roles" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="mdi mdi-account-group-outline"></i></span>
+                                <span class="menu-text"> Roles </span>
+                            </a>
+                        </li>
 
                         <li class="menu-item">
                             <a href="productos" class="menu-link waves-effect waves-light">
@@ -42,8 +48,18 @@
                                 <span class="menu-text"> Productos </span>
                             </a>
                         </li>
-
-                        
+                        <li class="menu-item">
+                            <a href="categorias" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="mdi mdi-parking"></i></span>
+                                <span class="menu-text"> Categorias </span>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="marcas" class="menu-link waves-effect waves-light">
+                                <span class="menu-icon"><i class="mdi mdi-parking"></i></span>
+                                <span class="menu-text"> Marcas </span>
+                            </a>
+                        </li>
 
                         <li class="menu-item">
                         <a href="#menuTables" data-bs-toggle="collapse" class="menu-link waves-effect waves-light">

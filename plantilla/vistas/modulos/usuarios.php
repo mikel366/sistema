@@ -19,9 +19,6 @@ $estados = Funciones::MostrarEstados(null, null);
                                 <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal" tipo="nuevo">
                                 <i>Agregar Usuario</i> 
                                 </button>
-                                <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#agregarRol" tipo="nuevo">
-                                <i>Agregar Rol</i> 
-                                </button>
                         </div>
                         
                         <div class="col-lg-6">
@@ -201,35 +198,6 @@ $estados = Funciones::MostrarEstados(null, null);
         </div>
     </div>
 </div> <!-- /.modal -->
-
-<div class="modal fade" id="agregarRol" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form method="post">
-                <div class="modal-header bg-success">
-                    <h5 class="modal-title"> Agregar Rol</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body p-4">
-                    <div class="col-md-12">
-                        <div class="mb-3">
-                            <label for="form-label">Nombre del rol:</label>
-                            <input type="text" class="form-control" id="nombre_rol" name="nombre_rol" required>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-info">Guardar</button>
-                </div>
-                <?php
-                $agregarRol = new RolesControlador();
-                $agregarRol->ctrAgregarRol();
-                ?>  
-            </form>
-        </div>
-    </div>
-</div>
 
 <?php
 $eliminar = new UsuariosControlador();
