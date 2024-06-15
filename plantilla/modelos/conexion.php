@@ -1,22 +1,15 @@
 <?php
+
 class Conexion
 {
-    const HOST = "localhost";
-    const DBNAME = "feliciano";
-    const USER = "root";
-    const PASSWORD = "";
     static public function conectar()
     {
-        try
-        {
-            $link = new PDO("mysql:host=" . self::HOST . ";dbname=" . self::DBNAME, self::USER,
-            self::PASSWORD);
+        try {
+            $link = new PDO("mysql:host=localhost;dbname=controlstockcom_burns", "controlstockcom_burns", "9tbrnNesm3g6Cw8XTUXq");
             $link->exec("set names utf8");
             return $link;
-        }
-        catch (PDOException $e)
-        {
-            die("Error en la conexión a la base de datos: " . $e->getMessage());
+        } catch (PDOException $e) {
+            die("Error: " . $e->getMessage());
         }
     }
 }

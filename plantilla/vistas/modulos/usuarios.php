@@ -15,12 +15,12 @@ $estados = Funciones::MostrarEstados(null, null);
                 <div class="py-3 py-lg-4">
                     <div class="row">
                         <div class="col-lg-6 usuarios">
-                                <h4 class="page-title mb-0">USUARIOS</h4>
-                                <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal" tipo="nuevo">
-                                <i>Agregar Usuario</i> 
-                                </button>
+                            <h4 class="page-title mb-0">USUARIOS</h4>
+                            <button type="button" class="btn btn-success mt-2" data-bs-toggle="modal" data-bs-target="#agregarUsuarioModal" tipo="nuevo">
+                                <i>Agregar Usuario</i>
+                            </button>
                         </div>
-                        
+
                         <div class="col-lg-6">
                             <div class="d-none d-lg-block">
                                 <ol class="breadcrumb m-0 float-end">
@@ -30,15 +30,15 @@ $estados = Funciones::MostrarEstados(null, null);
                             </div>
                         </div>
                     </div>
-                    
+
                 </div>
                 <!-- end page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
-                            <input type="hidden" id="url" value="<?php echo $url; ?>">
-                                <table  class="table table-striped dt-responsive nowrap w-100 tablaUsuarios">
+                                <input type="hidden" id="url" value="<?php echo $url; ?>">
+                                <table class="table table-striped dt-responsive nowrap w-100 tablaUsuarios">
                                     <thead>
                                         <tr>
                                             <th>Nombre</th>
@@ -48,8 +48,8 @@ $estados = Funciones::MostrarEstados(null, null);
                                             <th>Acciones</th>
                                         </tr>
                                     </thead>
-                                    
-                                    
+
+
                                 </table>
                             </div> <!-- end card body-->
                         </div> <!-- end card -->
@@ -158,7 +158,7 @@ $estados = Funciones::MostrarEstados(null, null);
                                 <label class="form-label">Password</label>
                                 <input type="password" class="form-control password_usuario" name="editar_password_usuario" placeholder="">
                                 <!-- Campo oculto para la contraseña actual del usuario -->
-                                
+
                             </div>
                         </div>
                     </div>
@@ -187,7 +187,7 @@ $estados = Funciones::MostrarEstados(null, null);
                 </div>
                 <input type="hidden" class="editar_id_usuario" name="editar_id_usuario" value="">
                 <?php
-                $agregar= new UsuariosControlador();
+                $agregar = new UsuariosControlador();
                 $agregar->ctrEditarUsuario();
                 ?>
                 <div class="modal-footer">

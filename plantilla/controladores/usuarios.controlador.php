@@ -198,4 +198,92 @@ class UsuariosControlador
             }
         }
     }
+
+    public function ctrRenovarPassword()
+    {
+
+        if (isset($_POST["resetPassword"])) {
+
+            /*=============================================
+			Validamos la sintaxis de los campos
+			=============================================*/
+
+            if (preg_match('/^[^0-9][.a-zA-Z0-9_]+([.][.a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["resetPassword"])) {
+
+                /*=============================================
+				Preguntamos primero si el usuario está registrado
+				=============================================*/
+
+                $tabla = "usuarios";
+
+                $item = "email_usuario";
+                $valor = $_POST["resetPassword"];
+
+                $respuesta = UsuariosModelo::mdlMostrarUsuarios($tabla, $item, $valor);
+
+                //print_r($respuesta);
+
+                //return;
+
+                if (is_array($respuesta) && ($respuesta["email_usuario"] == $_POST["resetPassword"])) {
+
+                    $nuevoPassword = Funciones::genPassword(8);
+                    $crypt = crypt($nuevoPassword, '$2a$07$hdgfamkdhdshsjhduaostyexdj$');
+                    $id_usuario = $respuesta["id_usuario"];
+
+                    $respuesta2 = UsuariosModelo::mdlRenovarPassword($crypt, $id_usuario);
+
+                    if ($respuesta2 == "ok") {
+
+                        /*=============================================
+						Enviamos nueva contraseña al correo electrónico
+						=============================================*/
+                        $name = $respuesta["nombre_usuario"];
+                        $subject = "Renovación de password";
+                        $email = $respuesta["email_usuario"];
+                        $message = "Su nuevo password es: " . $nuevoPassword;
+                        $url = PlantillaControlador::url() . "login";
+                        $email_envio = "info@controlstock.com.ar";
+                        $nombre_envio = "Control Stock";
+
+                        $enviarEmail = PlantillaControlador::enviarEmail($name, $subject, $email, $message, $url, $email_envio, $nombre_envio);
+
+                        if ($enviarEmail == "ok") {
+
+                            echo '<script>
+
+                                        fncSweetAlert("success", "Se envió una nueva contraseña al correo electronico", "' . $url . '");											
+
+                                    </script>
+                                ';
+                        } else {
+
+                            echo '<script>
+
+                                        fncSweetAlert("error", "Hubo problemas al enviar la contraseña", "' . $url . '");											
+
+                                    </script>
+                                ';
+                        }
+                    }
+                } else {
+
+                    echo '<script>
+
+								fncSweetAlert("error", "El email no existe en la base de datos", "");
+
+							</script>
+						';
+                }
+            } else {
+
+                echo '<script>
+
+						fncSweetAlert("error", "Error al escribir el email", "");
+
+					</script>
+				';
+            }
+        }
+    }
 }

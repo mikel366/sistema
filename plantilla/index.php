@@ -1,5 +1,7 @@
 <?php
-//Aplicación monolítica
+
+//Cargar phpmailer
+require_once 'extensiones/vendor/autoload.php';
 
 //Funciones
 require_once 'modelos/funciones.php';

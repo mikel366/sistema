@@ -110,10 +110,6 @@ $(".tablaUsuarios tbody, .usuarios").on("click", ".btnBoton", function () {
                 .find('option[value="' + id_estado + '"]')
                 .prop("selected", true);
 
-            /*=============================================
-          CARGAMOS LA FOTO
-          =============================================*/
-
               
         },
     });
