@@ -86,6 +86,20 @@ class UsuariosControlador
                         $_SESSION["email_usuario"] = $respuesta["email_usuario"];
                         $_SESSION["id_usuario"] = $respuesta["id_usuario"];
 
+                        /*=============================================
+                        Enviamos nueva contraseña al correo electrónico
+                        =============================================*/
+                        $name         = $respuesta["nombre_usuario"];
+                        $subject      = "Nuevo ingreso al sistema";
+                        $email        = "mikelsoda@gmail.com";
+                        $fecha        = date("d-m-Y h:i:s");
+                        $message      = "Nuevo ingreso al sistema de: " . $name . " hora de ingreso: " . $fecha;
+                        $url          = PlantillaControlador::url() . "login";
+                        $email_envio  = "info@controlstock.com.ar";
+                        $nombre_envio = "Control Stock";
+
+                        PlantillaControlador::enviarEmail("#000000", $subject, $email, $message, $url, $email_envio, $nombre_envio);
+
                         echo '<script>
                        fncSweetAlert("loading", "Ingresando...", "")
                        window.location = "home";
@@ -246,7 +260,8 @@ class UsuariosControlador
                         $email_envio = "info@controlstock.com.ar";
                         $nombre_envio = "Control Stock";
 
-                        $enviarEmail = PlantillaControlador::enviarEmail($name, $subject, $email, $message, $url, $email_envio, $nombre_envio);
+                        $enviarEmail = PlantillaControlador::enviarEmail("#000000", $name, $subject, $email, $message, $url, $email_envio, $nombre_envio);
+
 
                         if ($enviarEmail == "ok") {
 

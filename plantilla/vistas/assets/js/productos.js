@@ -332,3 +332,28 @@ $(".tablaProductosEliminados tbody").on("click", ".btnRestablecerProducto", func
         }
     });
 });
+
+$(".tablaProductos tbody").on("click", ".btnImprimir", function () {
+    let id_producto = $(this).attr("id_producto");
+
+    VentanaCentrada(
+        "vistas/modulos/imprimir.php?id_producto=" + id_producto,
+        "Imprimir",
+        "",
+        "1024",
+        "768",
+        "true"
+    );
+});
+
+$(".btnImprimir").on("click", function () {
+
+    VentanaCentrada(
+        "vistas/modulos/imprimir.php",
+        "Imprimir",
+        "",
+        "1024",
+        "768",
+        "true"
+    );
+});

@@ -11,8 +11,9 @@ TRAER PRODUCTO
     =============================================*/
 
     public $id_usuario;
+    public $email_usuario;
 
-    public function ajaxTraerUsuario()
+    public function ajaxTraerUsuarioById()
     {
 
         $item = "id_usuario";
@@ -22,11 +23,28 @@ TRAER PRODUCTO
 
         echo json_encode($respuesta);
     }
+
+    public function ajaxTraerUsuarioByEmail()
+    {
+        $item = 'email_usuario';
+        $valor = $this->email_usuario;
+
+        $respuesta = UsuariosControlador::ctrMostrarUsuarios($item, $valor);
+        echo json_encode($respuesta);
+    }
+   
 }
 
 if (isset($_POST["id_usuario"])) {
 
     $traerUsuario = new AjaxUsuarios();
     $traerUsuario->id_usuario = $_POST["id_usuario"];
-    $traerUsuario->ajaxTraerUsuario();
+    $traerUsuario->ajaxTraerUsuarioById();
+}
+
+if (isset($_POST['validarUsuario']))
+{
+    $traerUsuario = new AjaxUsuarios();
+    $traerUsuario->email_usuario = $_POST['validarUsuario'];
+    $traerUsuario->ajaxTraerUsuarioByEmail();
 }

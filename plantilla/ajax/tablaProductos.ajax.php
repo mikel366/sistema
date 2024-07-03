@@ -38,7 +38,7 @@ class TablaProductos
             $marcas= MarcasControlador::ctrObtenerNombreMarcas($productos[$i]["marca_producto"]);
             
             //Traemos las acciones
-            $acciones = "<button type='button' class='btn btn-info btnVerDetalleProducto' data-id-producto='" . $productos[$i]["id_producto"] . "' data-bs-toggle='modal' data-bs-target='#detalleProductoModal'><i class='fas fa-eye'></i></button> <button type='button' class='btn btn-warning btnBoton' data-bs-toggle='modal' data-bs-target='#editarProductoModal' tipo='editar' idProducto='" . $productos[$i]["id_producto"] . "'><i class='fas fa-edit'></i></button> <button type='button' data-id_producto = '" . $productos[$i]["id_producto"] . "' class='btn btn-danger btnExportarProducto'><i class='fas fa-trash'></i></button>";
+            $acciones = "<a type='button' class='btn btn-primary'  href = 'index.php?ruta=acciones-carrito&id_producto=" . $productos[$i]["id_producto"] . "' ><i class='fas fa-cart-plus'></i></a> <button type='button' id_producto = '" . $productos[$i]["id_producto"] . "' class='btn bg-success btnImprimir'><i class='fas fa-print'></i></button> <button type='button' class='btn btn-info btnVerDetalleProducto' data-id-producto='" . $productos[$i]["id_producto"] . "' data-bs-toggle='modal' data-bs-target='#detalleProductoModal'><i class='fas fa-eye'></i></button> <button type='button' class='btn btn-warning btnBoton' data-bs-toggle='modal' data-bs-target='#editarProductoModal' tipo='editar' idProducto='" . $productos[$i]["id_producto"] . "'><i class='fas fa-edit'></i></button> <button type='button' data-id_producto = '" . $productos[$i]["id_producto"] . "' class='btn btn-danger btnExportarProducto'><i class='fas fa-trash'></i></button>";
 
             
             

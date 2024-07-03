@@ -61,7 +61,7 @@ $estados = Funciones::MostrarEstados(null, null);
     </div>
     <!-- End Page content -->
 </div>
-
+<input type="hidden" id="url" value="<?php echo $url; ?>">
 <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
@@ -74,16 +74,17 @@ $estados = Funciones::MostrarEstados(null, null);
                     <div class="row">
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="validationTooltip01" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" name="nombre_usuario" id="validationTooltip01" placeholder="" required>
+                                <label for="validationTooltip01" class="form-label">Email</label>
+                                <input type="email" class="form-control" name="email_usuario" id="validarUsuario" placeholder="" required>
                             </div>
                         </div>
                         <div class="col-md-12">
                             <div class="mb-3">
-                                <label for="validationTooltip01" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="email_usuario" id="validationTooltip01" placeholder="" required>
+                                <label for="validationTooltip01" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" name="nombre_usuario" id="validationTooltip01" placeholder="" required>
                             </div>
                         </div>
+
                     </div>
                     <div class="row">
                         <div class="col-md-12">

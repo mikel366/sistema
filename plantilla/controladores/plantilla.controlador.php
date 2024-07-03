@@ -10,7 +10,6 @@ class PlantillaControlador
     {
 
         include 'vistas/plantilla.php';
-
     }
 
     //metodo para crear url
@@ -19,22 +18,26 @@ class PlantillaControlador
         return "https://controlstock.com.ar/burns/";
     }
 
-    static public function enviarEmail($name, $subject, $email, $message, $url, $email_envio, $nombre_envio)
+    static public function enviarEmail($color, $subject, $email, $message, $url, $email_envio, $nombre_envio)
     {
         date_default_timezone_set("America/Argentina/Buenos_Aires");
 
         $mail = new PHPMailer;
 
+        $nameRecep = 'Mikel';
+
         try {
             $mail->CharSet = 'UTF-8';
             $mail->isMail();
             $mail->setFrom($email_envio, $nombre_envio);
-            $mail->Subject = "Hola " . $name . " - " . $subject;
+            $mail->Subject = "Hola " . $nameRecep . " - " . $subject;
             $mail->addAddress($email);
             $mail->msgHTML(' 
-			<div>
-				Hola, ' . $name . ':
-				<p>' . $message . '</p>
+			<div style="background-color: ' . $color . '; padding: 20px; color: #ffffff;">
+                <img width="150px" src="https://controlstock.com.ar/burns/vistas/assets/images/logo-light.png" alt="">
+                <h1 style="margin-top: 20px;">Hola ' . $nameRecep . ':</h1>
+				
+				<p style="font-size: 20px">' . $message . '</p>
 				<a href="' . $url . '">Click aquí para ingresar</a><br><br>
 				Si no esperabas este mensaje, puedes eliminarlo.
 			</div>
@@ -48,5 +51,27 @@ class PlantillaControlador
         } catch (Exception $e) {
             echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
         }
+    }
+    /*=============================================
+    TRAER CONFIGURACIÓN
+    =============================================*/
+    static public function ctrMostrarConfiguracion($item, $valor)
+    {
+        $tabla = "configuracion";
+        $respuesta = PlantillaModelo::mdlMostrarConfiguracion($tabla, $item, $valor);
+
+        return $respuesta;
+    }
+
+    /*=============================================
+    GUARDAR CONFIGURACIÓN
+    =============================================*/
+    static public function ctrActualizarInformacion($datos)
+    {
+        $tabla = "configuracion";
+        $id = 1;
+        $respuesta = PlantillaModelo::mdlActualizarInformacion($tabla, $datos, $id);
+
+        return $respuesta;
     }
 }
